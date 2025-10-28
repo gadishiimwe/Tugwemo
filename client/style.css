@@ -107,10 +107,15 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 860px;
-  height: 160px;
+  width: 600px;
+  height: 120px;
   margin-bottom: 15px;
   overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .logo-image {
@@ -640,6 +645,31 @@ body {
   font-weight: 500;
 }
 
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.floating-icon {
+  position: absolute;
+  font-size: 2rem;
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-icon:nth-child(1) {
+  top: 10%;
+  right: 10%;
+}
+
+.floating-icon:nth-child(2) {
+  top: 30%;
+  left: 10%;
+}
 
 .floating-icon:nth-child(3) {
   bottom: 20%;
@@ -1104,17 +1134,84 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .logo {
-    font-size: 3rem;
+  .hero {
+    padding: 60px 20px;
+    min-height: auto;
   }
 
-  .tagline {
-    font-size: 1.2rem;
+  .logo-container {
+    width: 100%;
+    max-width: 400px;
+    height: 80px;
   }
 
-  .cta-button {
-    padding: 12px 30px;
+  .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+
+  .typing-container {
+    margin-bottom: 20px;
+  }
+
+  #typing-text {
+    font-size: 1.4rem;
+  }
+
+  .cursor {
+    font-size: 1.4rem;
+  }
+
+  .social-proof {
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .proof-item {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .hero-description {
     font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 15px;
+    max-width: 300px;
+  }
+
+  .cta-button.primary {
+    min-width: auto;
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+  }
+
+  .cta-button.secondary {
+    min-width: auto;
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+  }
+
+  .trust-indicators {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .indicator {
+    padding: 12px;
+  }
+
+  .indicator-icon {
+    font-size: 1.3rem;
+  }
+
+  .indicator-text {
+    font-size: 0.7rem;
   }
 
   .features {
@@ -1141,8 +1238,62 @@ body {
     text-align: center;
   }
 
+  .about-text {
+    padding-right: 0;
+  }
+
+  .about .section-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .about-description p {
+    font-size: 1rem;
+  }
+
+  .about-features {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .about-visual {
+    height: 300px;
+  }
+
   .about-image {
-    height: 200px;
+    height: 300px;
+  }
+
+  .about-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-stat {
+    width: 100%;
+  }
+
+  .stat-circle {
+    width: 100px;
+    height: 60px;
+    flex-direction: row;
+    gap: 15px;
+    padding: 10px 20px;
+  }
+
+  .stat-circle .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-circle .stat-label {
+    font-size: 0.8rem;
+  }
+
+  .stats {
+    padding: 40px 0;
+  }
+
+  .stats-header h2 {
+    font-size: 2.2rem;
   }
 
   .stats-grid {
@@ -1152,6 +1303,14 @@ body {
 
   .stat-number {
     font-size: 2.5rem;
+  }
+
+  .testimonials {
+    padding: 60px 0;
+  }
+
+  .testimonials h2 {
+    font-size: 2rem;
   }
 
   .testimonials-grid {
@@ -1164,21 +1323,101 @@ body {
     gap: 10px;
   }
 
-  .cta-section h2 {
-    font-size: 2rem;
+  .cta-section {
+    padding: 60px 0;
   }
 
-  .cta-section p {
+  .cta-content h2 {
+    font-size: 2.2rem;
+  }
+
+  .cta-content p {
     font-size: 1rem;
   }
 
-  .cta-button-large {
+  .cta-buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .cta-button-large.primary {
     padding: 15px 40px;
     font-size: 1.1rem;
+  }
+
+  .trust-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer {
+    padding: 30px 0;
   }
 
   .footer-links a {
     display: block;
     margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 15px;
+  }
+
+  .logo-container {
+    height: 60px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  #typing-text {
+    font-size: 1.2rem;
+  }
+
+  .cursor {
+    font-size: 1.2rem;
+  }
+
+  .social-proof {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .proof-item {
+    justify-content: center;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  .trust-indicators {
+    grid-template-columns: 1fr;
+  }
+
+  .features h2 {
+    font-size: 1.8rem;
+  }
+
+  .about .section-header h2 {
+    font-size: 2rem;
+  }
+
+  .stats-header h2 {
+    font-size: 2rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+
+  .trust-stats {
+    grid-template-columns: 1fr;
   }
 }

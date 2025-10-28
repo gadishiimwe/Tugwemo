@@ -3,14 +3,30 @@ import cors from 'cors';
 import path from 'path';
 import http from 'http';
 import { Server } from 'socket.io';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import adminRoutes from './routes/admin';
+import authRoutes from './routes/auth';
+import { setupAdminSocket } from './socket/adminSocket';
 
 // Import your existing logic
 import { handelStart, handelDisconnect, getType } from './lib';
 import { GetTypesResult, room } from './types';
 
+dotenv.config();
+
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Database connection
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/tugwemo')
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Routes
+app.use('/api/admin', adminRoutes);
+app.use('/api/auth', authRoutes);
 
 // --- Serve frontend ---
 app.use(express.static(path.join(__dirname, "../public")));
@@ -35,6 +51,9 @@ const io = new Server(server, { cors: { origin: "*" } });
 
 let online: number = 0;
 let roomArr: Array<room> = [];
+
+// Setup admin socket namespace
+setupAdminSocket(io);
 
 io.on('connection', (socket) => {
   online++;

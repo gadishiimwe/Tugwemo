@@ -119,6 +119,7 @@ body {
   z-index: 50;
   flex-wrap: wrap;
   width: auto;
+  max-width: calc(100vw - 20px);
 }
 
 .btn {
@@ -256,10 +257,7 @@ body.dark .chat-input button {
   color: white;
 }
 
-.country {
-  background: linear-gradient(135deg, rgba(33, 150, 243, 0.8), rgba(30, 144, 255, 0.8));
-  color: white;
-}
+
 
 .iam {
   background: linear-gradient(135deg, rgba(156, 39, 176, 0.8), rgba(138, 43, 226, 0.8));
@@ -456,7 +454,6 @@ body.dark .chat-input button {
   }
 
   .controls {
-    width: auto;
     left: auto;
     right: 10px;
     bottom: 30px;
@@ -520,6 +517,7 @@ body.dark .chat-input button {
   }
 
   .video-section {
+    flex-direction: column;
     height: calc(100vh - 380px);
     padding: 8px;
   }
@@ -553,10 +551,21 @@ body.dark .chat-input button {
   }
 
   .chat-status {
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
     padding: 6px;
+    flex-direction: column;
+  }
+
+  .status {
+    width: 100%;
+    margin-bottom: 8px;
   }
 
   .chat {
+    width: 100%;
     height: 160px;
     min-height: 130px;
   }
