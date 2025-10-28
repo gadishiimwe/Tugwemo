@@ -3,17 +3,19 @@ import cors from 'cors';
 import path from 'path';
 import http from 'http';
 import { Server } from 'socket.io';
+
+// Import your existing logic
 import { handelStart, handelDisconnect, getType } from './lib';
 import { GetTypesResult, room } from './types';
 
 const app = express();
 app.use(cors());
-app.use(express.json()); // for parsing POST request bodies
+app.use(express.json());
 
 // --- Serve frontend ---
 app.use(express.static(path.join(__dirname, "../public")));
 
-// SPA routing (optional, for React/Vite)
+// SPA routing (for React/Vite frontend)
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
@@ -43,7 +45,7 @@ io.on('connection', (socket) => {
     handelStart(roomArr, socket, cb, io);
   });
 
-  // On disconnection
+  // On disconnect
   socket.on('disconnect', () => {
     online--;
     io.emit('online', online);
@@ -53,14 +55,12 @@ io.on('connection', (socket) => {
   // On next
   socket.on('next', () => {
     handelDisconnect(socket.id, roomArr, io);
-    // Reconnect as new user
-    handelStart(roomArr, socket, (person) => {
-      socket.emit('remote-socket', socket.id); // Reset remote socket
+    handelStart(roomArr, socket, () => {
+      socket.emit('remote-socket', socket.id);
     }, io);
   });
 
-  /// ------- WebRTC logic ------
-
+  /// WebRTC logic
   socket.on('ice:send', ({ candidate }) => {
     const type: GetTypesResult = getType(socket.id, roomArr);
     if (type) {
@@ -85,8 +85,7 @@ io.on('connection', (socket) => {
     }
   });
 
-  /// --------- Messages -----------
-
+  // Messages
   socket.on("send-message", (input, type, roomid) => {
     const sender = type === 'p1' ? 'You: ' : 'Stranger: ';
     socket.to(roomid).emit('get-message', input, sender);
