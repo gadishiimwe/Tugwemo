@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Tugwemo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="videostyle.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- spinner  -->
+  <div class="modal">
+    <span id="spinner">Waiting For Someone...</span>
+  </div>
+
+
+
+  <!-- main video area -->
+  <div class="video-section">
+    <div class="video-container">
+      <video autoplay id="my-video" class="local-video"></video>
+      <div class="video-label">You</div>
+    </div>
+    <div class="video-container">
+      <video autoplay id="video" class="remote-video"></video>
+      <div class="video-label">Stranger</div>
+    </div>
+  </div>
+
+  <!-- chat section -->
+  <div class="chat-status">
+    <div class="chat">
+      <div class="chat-header">
+        <span class="chat-title">💬 Chat</span>
+      </div>
+      <div class="chat-wrapper">
+      </div>
+      <div class="chat-input">
+        <input type="text" placeholder='Type your message...'>
+        <button id="send">
+          <span class="send-icon">📤</span>
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- control buttons -->
+  <div class="controls">
+    <button id="next" class="btn next">
+      <span class="btn-icon">🔄</span>
+      <span class="btn-text">Next</span>
+    </button>
+    <button id="stop" class="btn stop">
+      <span class="btn-icon">⏹️</span>
+      <span class="btn-text">Stop</span>
+    </button>
+    <button id="mute" class="btn mute">
+      <span class="btn-icon">🔇</span>
+      <span class="btn-text">Mute</span>
+    </button>
+    <button id="country" class="btn country">
+      <span class="btn-icon">🇺🇸</span>
+      <span class="btn-text">Country</span>
+    </button>
+    <button id="iam" class="btn iam">
+      <span class="btn-icon">👤</span>
+      <span class="btn-text">I am</span>
+    </button>
+  </div>
+
+</body>
+<script src="./index.js" type="module"></script>
+
+</html>
