@@ -440,57 +440,147 @@ body.dark .chat-input button {
 
 @media only screen and (max-width: 1000px) {
   body {
-    padding-bottom: 250px;
+    padding-bottom: 300px;
   }
 
   .video-section {
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+    height: calc(100vh - 350px);
+    padding: 10px;
   }
 
   .video-container {
-    max-height: 40vh;
+    max-height: 35vh;
+    min-height: 200px;
   }
 
   .controls {
     width: auto;
     left: auto;
     right: 10px;
-    bottom: 20px;
+    bottom: 30px;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: calc(100vw - 20px);
   }
 
   .chat-status {
     width: 100%;
     bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px;
   }
 
   .btn {
-    flex: 1 1 18%;
-    min-width: 90px;
-    max-width: 100px;
-    min-height: 65px;
-    padding: 12px 6px;
+    flex: 1 1 20%;
+    min-width: 70px;
+    max-width: 85px;
+    min-height: 55px;
+    padding: 8px 4px;
+    margin: 2px;
   }
 
   .btn-icon {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .btn-text {
-    font-size: 11px;
-  }
-
-  .chat-status {
-    order: 1;
-    width: 100%;
-  }
-
-  .status {
-    margin-bottom: 8px;
+    font-size: 9px;
   }
 
   .chat {
-    height: 220px;
-    min-height: 180px;
+    height: 180px;
+    min-height: 150px;
+  }
+
+  .chat-wrapper {
+    padding: 8px;
+  }
+
+  .chat-input {
+    padding: 8px;
+  }
+
+  .chat-input input {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .chat-input button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    padding-bottom: 320px;
+  }
+
+  .video-section {
+    height: calc(100vh - 380px);
+    padding: 8px;
+  }
+
+  .video-container {
+    max-height: 30vh;
+    min-height: 150px;
+  }
+
+  .controls {
+    bottom: 25px;
+    right: 8px;
+    gap: 4px;
+  }
+
+  .btn {
+    flex: 1 1 22%;
+    min-width: 60px;
+    max-width: 75px;
+    min-height: 50px;
+    padding: 6px 3px;
+    margin: 1px;
+  }
+
+  .btn-icon {
+    font-size: 14px;
+  }
+
+  .btn-text {
+    font-size: 8px;
+  }
+
+  .chat-status {
+    padding: 6px;
+  }
+
+  .chat {
+    height: 160px;
+    min-height: 130px;
+  }
+
+  .chat-header {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .chat-wrapper {
+    padding: 6px;
+  }
+
+  .chat-input {
+    padding: 6px;
+  }
+
+  .chat-input input {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .chat-input button {
+    padding: 6px 12px;
+    font-size: 12px;
   }
 }
