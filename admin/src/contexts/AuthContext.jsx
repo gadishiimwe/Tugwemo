@@ -16,9 +16,24 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // TEMPORARY: Auto-login as super admin for demo
-    setUser({ id: '1', name: 'Super Admin', email: 'admin@tugwemo.com', role: 'super_admin' })
-    setLoading(false)
+    const token = localStorage.getItem('adminToken')
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      // Verify token and get user info
+      axios.get('http://localhost:8000/api/auth/profile')
+        .then(response => {
+          setUser(response.data.user)
+        })
+        .catch(() => {
+          localStorage.removeItem('adminToken')
+          delete axios.defaults.headers.common['Authorization']
+        })
+        .finally(() => {
+          setLoading(false)
+        })
+    } else {
+      setLoading(false)
+    }
   }, [])
 
   const login = async (email, password) => {

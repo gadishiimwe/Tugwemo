@@ -28,12 +28,20 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/tugwemo')
 app.use('/api/admin', adminRoutes);
 app.use('/api/auth', authRoutes);
 
-// --- Serve frontend ---
-app.use(express.static(path.join(__dirname, "../public")));
+// --- Serve admin frontend ---
+app.use('/admin', express.static(path.join(__dirname, "../admin/dist")));
+
+// SPA routing for admin (for React/Vite frontend)
+app.get("/admin/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../admin/dist/index.html"));
+});
+
+// --- Serve main frontend ---
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
 // SPA routing (for React/Vite frontend)
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
 // --- Example API endpoints ---
@@ -108,6 +116,38 @@ io.on('connection', (socket) => {
   socket.on("send-message", (input, type, roomid) => {
     const sender = type === 'p1' ? 'You: ' : 'Stranger: ';
     socket.to(roomid).emit('get-message', input, sender);
+  });
+
+  // Report user
+  socket.on('report-user', async (data) => {
+    try {
+      const { reportedUserId, reason, roomId } = data;
+
+      // Import Report model
+      const Report = require('./models/Report').default;
+
+      // Create report
+      const report = new Report({
+        reportedUserId,
+        reporterId: socket.id, // Use socket ID as reporter identifier
+        reason,
+        roomId,
+        status: 'pending'
+      });
+
+      await report.save();
+
+      // Emit to admin namespace for real-time updates
+      io.of('/admin').emit('new-report', {
+        report: report.toObject(),
+        timestamp: new Date()
+      });
+
+      console.log(`User reported: ${reportedUserId} - Reason: ${reason}`);
+    } catch (error) {
+      console.error('Report user error:', error);
+      socket.emit('report-error', { message: 'Failed to submit report' });
+    }
   });
 });
 

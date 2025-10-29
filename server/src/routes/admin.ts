@@ -1,5 +1,6 @@
 import express from 'express'
 import {
+  getDashboard,
   getUsers,
   updateUser,
   banUser,
@@ -28,6 +29,9 @@ const router = express.Router()
 
 // Apply authentication to all admin routes
 router.use(authenticateToken)
+
+// Dashboard Route
+router.get('/dashboard', requireModerator, getDashboard)
 
 // User Management Routes
 router.get('/users', requireModerator, getUsers)

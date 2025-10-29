@@ -11,6 +11,64 @@ interface AuthRequest extends Request {
   user?: any
 }
 
+// Dashboard
+export const getDashboard = async (req: AuthRequest, res: Response) => {
+  try {
+    // Get total users
+    const totalUsers = await User.countDocuments()
+
+    // Get active users (online)
+    const activeUsers = await User.countDocuments({ isOnline: true })
+
+    // Get total connections (sum of all users' connection counts)
+    const connectionStats = await User.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalConnections: { $sum: '$connectionCount' }
+        }
+      }
+    ])
+    const totalConnections = connectionStats[0]?.totalConnections || 0
+
+    // Get reports today
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    const reportsToday = await Report.countDocuments({
+      createdAt: { $gte: today, $lt: tomorrow }
+    })
+
+    // Get recent activity (last 10 logs)
+    const recentLogs = await Log.find()
+      .populate('userId', 'name email')
+      .sort({ createdAt: -1 })
+      .limit(10)
+
+    const recentActivity = recentLogs.map(log => ({
+      description: log.details,
+      timestamp: log.createdAt.toISOString(),
+      icon: log.level === 'error' ? 'AlertTriangle' :
+            log.level === 'warning' ? 'AlertCircle' :
+            log.level === 'security' ? 'Shield' : 'Info'
+    }))
+
+    res.json({
+      stats: {
+        totalUsers,
+        activeUsers,
+        totalConnections,
+        reportsToday
+      },
+      recentActivity
+    })
+  } catch (error) {
+    console.error('Get dashboard error:', error)
+    res.status(500).json({ message: 'Server error' })
+  }
+}
+
 // User Management
 export const getUsers = async (req: AuthRequest, res: Response) => {
   try {
@@ -555,10 +613,19 @@ export const getLogs = async (req: AuthRequest, res: Response) => {
       .limit(limit)
       .skip((page - 1) * limit)
 
+    // Transform logs to include user info properly
+    const transformedLogs = logs.map(log => {
+      const logObj = log.toObject()
+      return {
+        ...logObj,
+        user: log.userId ? ((log.userId as any).name || (log.userId as any).email) : 'System'
+      }
+    })
+
     const total = await Log.countDocuments(query)
 
     res.json({
-      logs,
+      logs: transformedLogs,
       pagination: {
         page,
         limit,
@@ -598,7 +665,7 @@ export const exportLogs = async (req: AuthRequest, res: Response) => {
     const csvHeader = 'Timestamp,Level,User,Action,IP Address,Details\n'
     const csvRows = logs.map(log => {
       const timestamp = log.createdAt.toISOString()
-      const user = log.userId ? (log.userId.name || log.userId.email) : 'System'
+      const user = log.userId ? ((log.userId as any).name || (log.userId as any).email) : 'System'
       const details = log.details.replace(/"/g, '""') // Escape quotes
       return `"${timestamp}","${log.level}","${user}","${log.action}","${log.ipAddress || ''}","${details}"`
     }).join('\n')

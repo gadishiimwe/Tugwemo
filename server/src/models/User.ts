@@ -6,6 +6,7 @@ export interface IUser extends Document {
   name: string
   email: string
   password: string
+  age?: number
   role: 'user' | 'moderator' | 'super_admin'
   isOnline: boolean
   lastSeen: Date
@@ -37,6 +38,11 @@ const userSchema = new Schema<IUser>({
     type: String,
     required: true,
     minlength: 6
+  },
+  age: {
+    type: Number,
+    min: 13,
+    max: 120
   },
   role: {
     type: String,

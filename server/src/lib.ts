@@ -1,7 +1,25 @@
 import { v4 as uuidv4 } from 'uuid';
 import { GetTypesResult, room } from './types';
+import User from './models/User';
 
-export function handelStart(roomArr: Array<room>, socket: any, cb: Function, io: any): void {
+export async function handelStart(roomArr: Array<room>, socket: any, cb: Function, io: any): Promise<void> {
+
+  // Get user info from socket handshake
+  const token = socket.handshake.auth?.token;
+  let userInfo: { name: string; age: number } | null = null;
+
+  if (token) {
+    try {
+      const jwt = require('jsonwebtoken');
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key') as any;
+      const user = await User.findById(decoded.userId);
+      if (user && user.name && typeof user.age === 'number') {
+        userInfo = { name: user.name, age: user.age };
+      }
+    } catch (error) {
+      console.log('Token verification failed:', error instanceof Error ? error.message : String(error));
+    }
+  }
 
   // check available rooms
   let availableroom = checkAvailableRoom();
@@ -10,6 +28,10 @@ export function handelStart(roomArr: Array<room>, socket: any, cb: Function, io:
     cb('p2');
     closeRoom(availableroom.roomid);
     if (availableroom?.room) {
+      // Send user info to both participants
+      io.to(availableroom.room.p1.id).emit('user-info', { stranger: userInfo });
+      socket.emit('user-info', { stranger: availableroom.room.p1.userInfo });
+
       io.to(availableroom.room.p1.id).emit('remote-socket', socket.id);
       socket.emit('remote-socket', availableroom.room.p1.id);
       socket.emit('roomid', availableroom.room.roomid);
@@ -24,9 +46,11 @@ export function handelStart(roomArr: Array<room>, socket: any, cb: Function, io:
       isAvailable: true,
       p1: {
         id: socket.id,
+        userInfo: userInfo,
       },
       p2: {
         id: null,
+        userInfo: null,
       }
     });
     cb('p1');
@@ -48,6 +72,7 @@ export function handelStart(roomArr: Array<room>, socket: any, cb: Function, io:
       if (roomArr[i].roomid == roomid) {
         roomArr[i].isAvailable = false;
         roomArr[i].p2.id = socket.id;
+        roomArr[i].p2.userInfo = userInfo;
         break;
       }
     }

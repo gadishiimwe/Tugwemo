@@ -19,14 +19,14 @@ const seedAdmin = async () => {
     // Create super admin
     const superAdmin = new User({
       name: 'Super Admin',
-      email: 'admin@tugwemo.com',
+      email: 'gadyishimwe1@gmail.com',
       password: 'admin123', // This will be hashed by the pre-save hook
       role: 'super_admin'
     })
 
     await superAdmin.save()
     console.log('Super admin created successfully!')
-    console.log('Email: admin@tugwemo.com')
+    console.log('Email: gadyishimwe1@gmail.com')
     console.log('Password: admin123')
 
     // Create moderator

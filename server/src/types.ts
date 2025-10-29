@@ -3,9 +3,11 @@ export interface room {
   isAvailable: boolean,
   p1: {
     id: string | null,
+    userInfo?: { name: string, age: number } | null,
   },
   p2: {
     id: string | null,
+    userInfo?: { name: string, age: number } | null,
   }
 }
 
