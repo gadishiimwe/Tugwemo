@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tugwemo - Anonymous Video Chat Platform</title>
+  <link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg-elements">
+      <div class="floating-shape shape1"></div>
+      <div class="floating-shape shape2"></div>
+      <div class="floating-shape shape3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="logo-container">
+        <div id="root"></div><script type="module" src="/src/main.jsx"></script>
+      </div>
+      <div class="typing-container">
+        <span id="typing-text"></span>
+        <span class="cursor">|</span>
+      </div>
+      <div class="social-proof">
+        <div class="proof-item">
+          <div class="status-dot"></div>
+          <span>10,000+ Active Users</span>
+        </div>
+        <div class="proof-item">
+          <span class="shield-icon">🛡️</span>
+          <span>100% Safe & Secure</span>
+        </div>
+      </div>
+      <p class="hero-description">
+        Rwanda's premier platform for anonymous video chat and meaningful connections.
+        Experience the future of social interaction with cutting-edge technology and unmatched privacy.
+      </p>
+      <div class="cta-buttons">
+        <button class="cta-button primary" onclick="redirect()" style="text-align: center;">
+          Get Started Free
+        </button>
+        <button class="cta-button secondary" onclick="redirect()">
+          Tangira
+        </button>
+      </div>
+      <div class="trust-indicators">
+        <div class="indicator">
+          <div class="indicator-icon">👥</div>
+          <div class="indicator-text">10K+ Users</div>
+        </div>
+        <div class="indicator">
+          <div class="indicator-icon">🌍</div>
+          <div class="indicator-text">Global Access</div>
+        </div>
+        <div class="indicator" onclick="redirectToAdmin()" style="cursor: pointer;">
+          <div class="indicator-icon">🛡️</div>
+          <div class="indicator-text">Enterprise Security</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <p class="copyright">&copy; 2024 Tugwemo. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+<script>
+  function redirect() {
+    const token = localStorage.getItem('token');
+    const language = localStorage.getItem('language');
+    if (!token) {
+      if (!language) {
+        location.href = '/language.html';
+      } else {
+        location.href = '/login.html';
+      }
+    } else {
+      location.href = '/video.html';
+    }
+  }
+
+  function redirectToAdmin() {
+    window.open('http://tugwemo-admin.vercel.app/', '_blank');
+  }
+
+  function scrollToFeatures() {
+    document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Typing effect for tagline
+  const typingText = document.getElementById('typing-text');
+  const messages = [
+    'Connect anonymously.',
+    'Chat freely.',
+    'Meet authentically.'
+  ];
+  let messageIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeWriter() {
+    const currentMessage = messages[messageIndex];
+
+    if (!isDeleting) {
+      typingText.textContent = currentMessage.substring(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === currentMessage.length) {
+        isDeleting = true;
+        setTimeout(typeWriter, 2000); // Pause at end
+        return;
+      }
+    } else {
+      typingText.textContent = currentMessage.substring(0, charIndex - 1);
+      charIndex--;
+      if (charIndex < 0) {
+        isDeleting = false;
+        messageIndex = (messageIndex + 1) % messages.length;
+        setTimeout(typeWriter, 500); // Pause before next message
+        return;
+      }
+    }
+
+    setTimeout(typeWriter, isDeleting ? 50 : 100);
+  }
+
+  // Start typing effect when page loads
+  window.addEventListener('load', () => {
+    setTimeout(typeWriter, 1000);
+  });
+</script>
+
+</html>

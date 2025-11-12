@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Tugwemo</title>
+  <link rel="stylesheet" href="public/style.css" />
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <img src="./public/Tugwemo.png" alt="Tugwemo Logo" class="auth-logo" />
+        <h1 id="register-title">Join Tugwemo</h1>
+        <p id="register-subtitle">Create your account to start connecting</p>
+      </div>
+
+      <form id="registerForm" class="auth-form">
+        <div class="form-group">
+          <label for="name" id="name-label">Full Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email" id="email-label">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="age" id="age-label">Age</label>
+          <input type="number" id="age" name="age" min="13" max="120" required />
+        </div>
+
+        <div class="form-group">
+          <label for="sex" id="sex-label">Sex</label>
+          <select id="sex" name="sex" required>
+            <option value="" id="select-sex">Select your sex</option>
+            <option value="boy" id="boy-option">Boy</option>
+            <option value="girl" id="girl-option">Girl</option>
+            <option value="other" id="other-option">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="sexOtherGroup" style="display: none;">
+          <label for="sexOther" id="specify-label">Please specify</label>
+          <input type="text" id="sexOther" name="sexOther" placeholder="Please specify your sex" />
+        </div>
+
+        <div class="form-group">
+          <label for="password" id="password-label">Password</label>
+          <input type="password" id="password" name="password" minlength="6" required />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword" id="confirm-label">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required />
+        </div>
+
+        <button type="submit" class="auth-btn primary" id="create-btn">Create Account</button>
+      </form>
+
+      <div class="auth-links">
+        <p id="signin-link">
+          Already have an account? <a href="login.html">Sign in</a>
+        </p>
+        <p><a href="index.html" id="back-home-link">Back to Home</a></p>
+      </div>
+
+      <div id="message" class="message"></div>
+    </div>
+  </div>
+
+  <script>
+    const registerForm = document.getElementById("registerForm");
+    const messageDiv = document.getElementById("message");
+    const sexSelect = document.getElementById("sex");
+    const sexOtherGroup = document.getElementById("sexOtherGroup");
+    const sexOtherInput = document.getElementById("sexOther");
+
+    // ✅ API Base (auto switch)
+    const API_BASE = window.location.hostname.includes("localhost")
+      ? "http://localhost:8000/api"
+      : "https://tugwemo-backend.onrender.com/api";
+
+    const translations = {
+      en: {
+        title: "Join Tugwemo",
+        subtitle: "Create your account to start connecting",
+        name: "Full Name",
+        email: "Email",
+        age: "Age",
+        sex: "Sex",
+        selectSex: "Select your sex",
+        boy: "Boy",
+        girl: "Girl",
+        other: "Other",
+        specify: "Please specify",
+        password: "Password",
+        confirm: "Confirm Password",
+        create: "Create Account",
+        signin: 'Already have an account? <a href="login.html">Sign in</a>',
+        back: "Back to Home",
+        success: "Registration successful! Redirecting...",
+        error: "Registration failed",
+        network: "Network error. Please try again.",
+        mismatch: "Passwords do not match",
+      },
+      rw: {
+        title: "Injira muri Tugwemo",
+        subtitle: "Kora konti yawe kugira ngo utangire guhuza",
+        name: "Amazina yose",
+        email: "Emeyili",
+        age: "Imyaka",
+        sex: "Igitsina",
+        selectSex: "Hitamo igitsina cyawe",
+        boy: "Umugabo",
+        girl: "Umugore",
+        other: "Ibindi",
+        specify: "Tanga ibisobanuro",
+        password: "Ijambo banga",
+        confirm: "Emeza ijambo banga",
+        create: "Kora konti",
+        signin: 'Ubufite konti? <a href="login.html">Injira</a>',
+        back: "Garuka ku rubuga rw'itangiriro",
+        success: "Kwiyandikisha byagenze neza! Turakuyobora...",
+        error: "Kwiyandikisha byanze",
+        network: "Ikibazo cya interineti. Ongera ugerageze.",
+        mismatch: "Amagambo banga ntabwo ahura",
+      },
+    };
+
+    const language = localStorage.getItem("language") || "en";
+    const langData = translations[language];
+
+    // Apply translations
+    document.getElementById("register-title").textContent = langData.title;
+    document.getElementById("register-subtitle").textContent = langData.subtitle;
+    document.getElementById("name-label").textContent = langData.name;
+    document.getElementById("email-label").textContent = langData.email;
+    document.getElementById("age-label").textContent = langData.age;
+    document.getElementById("sex-label").textContent = langData.sex;
+    document.getElementById("select-sex").textContent = langData.selectSex;
+    document.getElementById("boy-option").textContent = langData.boy;
+    document.getElementById("girl-option").textContent = langData.girl;
+    document.getElementById("other-option").textContent = langData.other;
+    document.getElementById("specify-label").textContent = langData.specify;
+    document.getElementById("password-label").textContent = langData.password;
+    document.getElementById("confirm-label").textContent = langData.confirm;
+    document.getElementById("create-btn").textContent = langData.create;
+    document.getElementById("signin-link").innerHTML = langData.signin;
+    document.getElementById("back-home-link").textContent = langData.back;
+
+    sexSelect.addEventListener("change", () => {
+      if (sexSelect.value === "other") {
+        sexOtherGroup.style.display = "block";
+        sexOtherInput.required = true;
+      } else {
+        sexOtherGroup.style.display = "none";
+        sexOtherInput.required = false;
+        sexOtherInput.value = "";
+      }
+    });
+
+    registerForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const age = document.getElementById("age").value;
+      const sex = document.getElementById("sex").value;
+      const sexOther = document.getElementById("sexOther").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        showMessage(langData.mismatch, "error");
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/auth/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            age: parseInt(age),
+            sex,
+            sexOther,
+            password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          showMessage(langData.success, "success");
+          setTimeout(() => (window.location.href = "/index.html"), 1000);
+        } else {
+          showMessage(data.message || langData.error, "error");
+        }
+      } catch (err) {
+        showMessage(langData.network, "error");
+      }
+    });
+
+    function showMessage(message, type) {
+      messageDiv.textContent = message;
+      messageDiv.className = `message ${type}`;
+      messageDiv.style.display = "block";
+      setTimeout(() => (messageDiv.style.display = "none"), 5000);
+    }
+  </script>
+</body>
+</html>

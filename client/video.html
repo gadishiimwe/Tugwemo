@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tugwemo</title>
+  <link rel="stylesheet" href="public/videostyle.css">
+</head>
+
+<body>
+
+  <!-- Finding User Overlay -->
+  <div id="finding-user-overlay" class="finding-user-overlay">
+    <div class="finding-user-content">
+      <div class="finding-animation">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="finding-text">Finding a user...</div>
+
+      <!-- Waiting Ad -->
+      <div id="waiting-ad-banner" class="ad-banner waiting-ad" style="display: none;">
+        <div class="ad-content">
+          <img id="waiting-ad-image" class="ad-image" alt="Advertisement">
+          <div class="ad-info">
+            <div id="waiting-ad-title" class="ad-title"></div>
+            <div id="waiting-ad-content" class="ad-text"></div>
+          </div>
+        </div>
+        <button id="waiting-ad-close" class="ad-close-btn">×</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Section -->
+  <div class="video-section">
+    <div class="video-container stranger-video">
+      <video id="video" class="remote-video" autoplay playsinline></video>
+      <div class="video-label" id="stranger-label">Stranger</div>
+      <button id="report-stranger" class="report-stranger-btn" title="Report User">🚨</button>
+    </div>
+
+    <div class="video-container user-video">
+      <video id="my-video" class="local-video" autoplay muted playsinline></video>
+      <div class="video-label">You</div>
+    </div>
+  </div>
+
+  <!-- Chat Section -->
+  <div class="chat-status">
+    <div class="chat">
+      <div class="chat-header">
+        <span class="chat-title">💬 TUGWEMO Chat</span>
+      </div>
+      <div class="chat-wrapper"></div>
+
+      <!-- New Messages Notification -->
+      <div id="new-messages-notification" class="new-messages-notification">
+        <span id="new-messages-count">0</span> new messages - Click to scroll
+      </div>
+
+      <!-- Input & Emoji -->
+      <div class="chat-input">
+        <input type="text" placeholder="Type your message...">
+        <button id="emoji-btn" class="emoji-button">😊</button>
+        <button id="send">Send</button>
+      </div>
+
+      <!-- Emoji Picker -->
+<div id="emoji-picker" class="emoji-picker">
+  <div class="emoji-grid" id="emoji-list">
+    <span>😀</span><span>😃</span><span>😄</span><span>😁</span><span>😆</span>
+    <span>🥰</span><span>😍</span><span>😘</span><span>😋</span><span>😎</span>
+    <span>🤔</span><span>😢</span><span>😭</span><span>😂</span><span>🤗</span>
+    <span>😴</span><span>😤</span><span>😡</span><span>🥺</span><span>😳</span>
+    <span>🙄</span><span>😇</span><span>🤩</span><span>😏</span><span>😅</span>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+
+  <!-- Report Modal -->
+  <div id="report-modal" class="report-modal">
+    <div class="report-modal-content">
+      <div class="report-modal-header">
+        <h3>Report User</h3>
+        <button class="report-modal-close">&times;</button>
+      </div>
+      <div class="report-modal-body">
+        <label for="report-reason">Reason for reporting:</label>
+        <select id="report-reason" class="report-reason-select">
+          <option value="">Select a reason...</option>
+          <option value="inappropriate_behavior">Inappropriate Behavior</option>
+          <option value="harassment">Harassment</option>
+          <option value="spam">Spam</option>
+          <option value="nudity">Nudity/Adult Content</option>
+          <option value="violence">Violence</option>
+          <option value="hate_speech">Hate Speech</option>
+          <option value="other">Other</option>
+        </select>
+        <label for="report-details">Additional details (optional):</label>
+        <textarea id="report-details" class="report-details-textarea" placeholder="Please provide more details..."></textarea>
+        <p>📸 A screenshot will be automatically captured with your report.</p>
+      </div>
+      <div class="report-modal-footer">
+        <button class="report-modal-cancel">Cancel</button>
+        <button class="report-modal-submit">Submit Report</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Ad Banner -->
+  <div id="chat-ad-banner" class="ad-banner chat-ad" style="display: none;">
+    <div class="ad-content">
+      <img id="chat-ad-image" class="ad-image" alt="Advertisement">
+      <div class="ad-info">
+        <div id="chat-ad-title" class="ad-title"></div>
+        <div id="chat-ad-content" class="ad-text"></div>
+      </div>
+    </div>
+    <button id="chat-ad-close" class="ad-close-btn">×</button>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button id="next" class="btn next"><span class="btn-text">Next</span></button>
+    <button id="stop" class="btn stop"><span class="btn-text">Stop</span></button>
+    <button id="mute" class="btn mute"><span class="btn-text">Mute</span></button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="./ads.js"></script>
+  <script type="module" src="./index.js"></script>
+
+</body>
+</html>
