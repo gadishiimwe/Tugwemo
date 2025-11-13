@@ -1,8 +1,6 @@
-# TODO List for Mobile Video Fix
+# TODO List for Mobile Video Screen Size
 
 ## Tasks
-- [x] Update viewport meta tag to include user-scalable=no, viewport-fit=cover
-- [x] Change body height from 100vh to 100dvh
-- [x] Change video-section height from calc(100vh - 320px) to calc(100dvh - 320px) on mobile
-- [x] Fix video-container max-height from 5000vh back to 50vh
-- [ ] Test video screen height on Android phone
+- [x] Increase video-container max-height from 50vh to 70vh on mobile
+- [x] Reduce video-section height from calc(100dvh - 320px) to calc(100dvh - 250px) on mobile
+- [ ] Test video screen size on Android phone

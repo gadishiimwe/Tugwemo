@@ -1011,12 +1011,12 @@ body.dark .chat-input button {
 
   .video-section {
     flex-direction: column;
-    height: calc(100dvh - 320px);
+    height: calc(100dvh - 250px);
     padding: 5px;
   }
 
   .video-container {
-    max-height: 50vh;
+    max-height: 70vh;
     min-height: 180px;
   }
 
