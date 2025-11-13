@@ -30,16 +30,19 @@ router.post("/login", async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: admin._id, role: admin.role, email: admin.email },
+      { userId: admin._id, role: admin.role },
       process.env.JWT_SECRET || "your-secret-key",
       { expiresIn: "7d" }
     );
 
     res.json({
-      message: "Admin login successful",
       token,
-      role: admin.role,
-      email: admin.email,
+      user: {
+        id: admin._id,
+        name: admin.name,
+        email: admin.email,
+        role: admin.role
+      }
     });
   } catch (error) {
     console.error("Admin login error:", error);
@@ -94,12 +97,20 @@ router.post("/user/login", async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: user._id, role: user.role },
+      { userId: user._id, role: user.role },
       process.env.JWT_SECRET || "your-secret-key",
       { expiresIn: "7d" }
     );
 
-    res.json({ message: "User login successful", token });
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    });
   } catch (error) {
     console.error("User login error:", error);
     res.status(500).json({ message: "Server error" });
@@ -111,7 +122,7 @@ router.post("/user/login", async (req, res) => {
 // ==============================
 router.get("/profile", authenticateToken, async (req: any, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    const user = await User.findById(req.user._id).select("-password");
     if (!user) return res.status(404).json({ message: "User not found" });
     res.json({ user });
   } catch (error) {
