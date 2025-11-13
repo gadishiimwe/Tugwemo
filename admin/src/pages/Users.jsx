@@ -75,14 +75,18 @@ const Users = () => {
   }
 
   const handleBanUser = async (reason, duration) => {
+    setActionLoading(true)
     try {
-      await axios.post(`${API_BASE_URL}/admin/users/${selectedUser._id}/ban`, { reason, duration })
+      const response = await axios.post(`${API_BASE_URL}/admin/users/${selectedUser._id}/ban`, { reason, duration })
       alert('User banned successfully!')
       fetchUsers()
       closeModal()
     } catch (error) {
       console.error('Failed to ban user:', error)
-      alert('Failed to ban user. Please try again.')
+      const errorMessage = error.response?.data?.message || 'Failed to ban user. Please try again.'
+      alert(errorMessage)
+    } finally {
+      setActionLoading(false)
     }
   }
 

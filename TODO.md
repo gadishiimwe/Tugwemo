@@ -1,21 +1,6 @@
-# Admin Login Fix Tasks
+# TODO List for Fixing TUGWEMO Visibility on Vercel
 
-- [x] Update server/src/routes/auth.ts:
-  - [x] Change JWT payload in admin login to use 'userId' instead of 'id'
-  - [x] Modify admin login response to include user object with id, name, email, role
-  - [x] Apply same fixes to user/login endpoint
-  - [x] Fix profile endpoint to use req.user._id
-
-- [x] Test admin login after changes
-- [x] Verify profile endpoint works
-- [x] Fix admin API URLs to use production backend URL:
-  - [x] Reports.jsx
-  - [x] Dashboard.jsx
-  - [x] Users.jsx
-  - [x] Analytics.jsx
-  - [x] Ads.jsx
-  - [x] Settings.jsx
-  - [x] Logs.jsx
-  - [x] Notifications.jsx
-  - [x] Fix reports page to show all status reports (pending, resolved, dismissed)
-- [ ] Deploy admin changes to Vercel
+## Tasks
+- [x] Move TUGWEMO h1 element before logo-container div in client/index.html
+- [x] Update font-family in client/public/style.css for .text-logo to ensure visibility
+- [ ] Test changes locally and on Vercel
