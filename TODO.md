@@ -1,6 +1,8 @@
-# TODO List for Video Aspect Ratio
+# TODO List for Mobile Video Layout
 
 ## Tasks
-- [x] Change local-video object-fit from cover to contain
-- [x] Change remote-video object-fit from cover to contain
-- [ ] Test video aspect ratio on Android phone
+- [x] Keep video object-fit as cover for better visibility
+- [x] Increase video-container max-height to 85vh on mobile
+- [x] Reduce video-section height from calc(100vh - 320px) to calc(100dvh - 180px) on mobile
+- [x] Reduce chat height to 150px on mobile for more video space
+- [ ] Test video screen size and chat layout on Android phone
