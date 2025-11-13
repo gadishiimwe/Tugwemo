@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tugwemo.vercel.app/sitemap.xml

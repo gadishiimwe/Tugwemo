@@ -1,7 +1,11 @@
-# TODO List for Fixing TUGWEMO Visibility on Vercel
+# TODO List for SEO Implementation
 
 ## Tasks
-- [x] Move TUGWEMO h1 element before logo-container div in client/index.html
-- [x] Update font-family in client/public/style.css for .text-logo to ensure visibility
-- [x] Remove empty logo-container div and its CSS styles
-- [ ] Test changes locally and on Vercel
+- [x] Add meta tags (description, keywords, author, robots, canonical) to client/index.html
+- [x] Add Open Graph meta tags for Facebook sharing
+- [x] Add Twitter Card meta tags for Twitter sharing
+- [x] Add JSON-LD structured data for search engines
+- [x] Create robots.txt in client/public/
+- [x] Create sitemap.xml in client/public/
+- [ ] Submit sitemap to Google Search Console
+- [ ] Test SEO improvements using Lighthouse or similar tools
