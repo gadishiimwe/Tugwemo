@@ -10,3 +10,6 @@
 - [x] Ensure cta-buttons are horizontal (already are, but confirm)
 - [x] Add navbar to About, Terms of Service, Privacy Policy, Contact pages only
 - [x] Test changes by running locally
+- [x] Optimize privacy.html for mobile responsiveness
+- [x] Optimize contact.html for mobile responsiveness
+- [ ] Test changes locally and on Vercel
