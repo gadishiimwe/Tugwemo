@@ -1,6 +1,5 @@
-# TODO List for Login Redirect Update
+# TODO List for Video Screen Height
 
 ## Tasks
-- [x] Update login.html to redirect to video.html after successful login
-- [x] Update register.html to redirect to video.html after successful registration
-- [ ] Test login and registration redirects on Vercel
+- [x] Increase video-container max-height from 40vh to 50vh on mobile (max-width: 600px)
+- [ ] Test video screen height on Vercel

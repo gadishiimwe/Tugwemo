@@ -718,7 +718,8 @@ body.dark .chat-input button {
   border: 1px solid rgba(0,0,0,0.1);
   overflow: hidden;
   height: 250px;
-  min-height: 200px;
+  margin-top: 10px;
+  min-height: 20px;
   width: calc(60vw - 150px);
   max-width: 5000px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
@@ -1009,12 +1010,12 @@ body.dark .chat-input button {
 
   .video-section {
     flex-direction: column;
-    height: calc(100vh - 320px);
+    height: calc(1000vh - 320px);
     padding: 5px;
   }
 
   .video-container {
-    max-height: 40vh;
+    max-height: 5000vh;
     min-height: 180px;
   }
 
@@ -1055,12 +1056,12 @@ body.dark .chat-input button {
   }
 
   .chat {
-    width: 780px;
-    height: 250px;
+    width: 980px;
+    height: 200px;
     min-height: 80px;
     max-height: 500px;
     border-radius: 10px;
-    margin: 0px 0px 59px 0px;
+    margin: 0px 0px 65px 0px;
   }
 
   .chat-header {
@@ -1117,7 +1118,7 @@ body.dark .chat-input button {
 
   .chat {
     width: calc(450vw - 80px);
-    height: 280px;
+    height: 220px;
     border-radius: 18px;
   }
 

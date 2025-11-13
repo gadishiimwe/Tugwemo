@@ -133,9 +133,10 @@ body {
 
 
 .hero-logo {
+  margin-top: -50px;
   max-width: 300px;
   height: auto;
-  margin-bottom: -40px;
+  margin-bottom: -50px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -288,10 +289,10 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 20px;
   margin-bottom: 50px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 100%;
   max-width: 600px;
   margin-left: auto;
@@ -322,6 +323,7 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 180px;
+  max-width: 250px;
   box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
   position: relative;
   overflow: hidden;
@@ -363,6 +365,7 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   min-width: 120px;
+  max-width: 150px;
   flex-shrink: 0;
 }
 
@@ -1596,8 +1599,10 @@ body {
   .cta-buttons {
     flex-direction: row;
     gap: 20px;
-    max-width: 350px;
+    max-width: 100%;
     margin: 0 auto;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
   }
 
   .cta-button.primary {
