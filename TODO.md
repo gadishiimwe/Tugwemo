@@ -1,11 +1,7 @@
-# TODO List for SEO Implementation
+# TODO List for Logo and Favicon Update
 
 ## Tasks
-- [x] Add meta tags (description, keywords, author, robots, canonical) to client/index.html
-- [x] Add Open Graph meta tags for Facebook sharing
-- [x] Add Twitter Card meta tags for Twitter sharing
-- [x] Add JSON-LD structured data for search engines
-- [x] Create robots.txt in client/public/
-- [x] Create sitemap.xml in client/public/
-- [ ] Submit sitemap to Google Search Console
-- [ ] Test SEO improvements using Lighthouse or similar tools
+- [x] Replace TUGWEMO text heading with logo image in hero section
+- [x] Update favicon to use favicon.ico
+- [x] Style the hero logo with appropriate sizing and effects
+- [ ] Test logo display and favicon on Vercel
