@@ -333,12 +333,8 @@ socket.on('get-message', (input, type) => {
   const strangerName = strangerInfo?.name || 'Stranger';
   const msghtml = `<div class="msg"><b>${strangerName}: </b><span id='msg'>${input}</span></div>`;
   document.querySelector('.chat-wrapper').innerHTML += msghtml;
-  if (isUserAtBottom) {
-    document.querySelector('.chat-wrapper').scrollTop = document.querySelector('.chat-wrapper').scrollHeight;
-  } else {
-    newMessagesCountValue++;
-    updateNewMessagesNotification();
-  }
+  // Auto-scroll to new message
+  document.querySelector('.chat-wrapper').scrollTop = document.querySelector('.chat-wrapper').scrollHeight;
 });
 
 socket.on('user-info', data => {
