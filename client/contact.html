@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -23,7 +23,10 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.03"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.03"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.02"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.02"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      background:
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
       pointer-events: none;
     }
 
@@ -43,31 +46,39 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .contact-hero p {
       font-size: 1.3rem;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.95);
       margin-bottom: 40px;
       line-height: 1.6;
+      font-weight: 300;
     }
 
     .back-link {
       position: absolute;
       top: 30px;
       left: 30px;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.9);
       text-decoration: none;
       font-weight: 500;
       display: flex;
       align-items: center;
       gap: 8px;
       transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 16px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .back-link:hover {
       color: white;
       transform: translateX(-5px);
+      background: rgba(255, 255, 255, 0.2);
     }
 
     /* Main Content */
@@ -90,7 +101,9 @@
       background: white;
       padding: 50px 40px;
       border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.1),
+        0 8px 32px rgba(102, 126, 234, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.8);
       position: relative;
       overflow: hidden;
@@ -104,12 +117,14 @@
       right: 0;
       height: 4px;
       background: linear-gradient(90deg, #667eea, #764ba2);
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     }
 
     .contact-info-icon {
       font-size: 3rem;
       margin-bottom: 30px;
       display: block;
+      filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.2));
     }
 
     .contact-info-card h2 {
@@ -127,34 +142,39 @@
       align-items: flex-start;
       gap: 20px;
       margin-bottom: 30px;
-      padding: 20px;
-      background: rgba(102, 126, 234, 0.05);
-      border-radius: 12px;
+      padding: 25px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.06) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(102, 126, 234, 0.08);
       transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.04);
     }
 
     .contact-info-item:hover {
-      background: rgba(102, 126, 234, 0.1);
-      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.12);
     }
 
     .contact-info-icon-small {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #667eea;
       flex-shrink: 0;
       margin-top: 2px;
+      filter: drop-shadow(0 1px 2px rgba(102, 126, 234, 0.2));
     }
 
     .contact-info-content h3 {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: #2c3e50;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
     }
 
     .contact-info-content p {
       color: #6c757d;
-      line-height: 1.5;
+      line-height: 1.6;
+      font-size: 1rem;
     }
 
     .social-links {
@@ -162,35 +182,53 @@
     }
 
     .social-links h3 {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 600;
       color: #2c3e50;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     .social-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
+      gap: 18px;
     }
 
     .social-link {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 15px;
+      padding: 18px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       text-decoration: none;
-      border-radius: 12px;
+      border-radius: 14px;
       font-weight: 500;
       transition: all 0.3s ease;
       text-align: center;
+      box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .social-link:hover::before {
+      left: 100%;
     }
 
     .social-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
     }
 
     /* Contact Form Card */
@@ -198,7 +236,9 @@
       background: white;
       padding: 50px 40px;
       border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.1),
+        0 8px 32px rgba(102, 126, 234, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.8);
       position: relative;
       overflow: hidden;
@@ -212,12 +252,14 @@
       right: 0;
       height: 4px;
       background: linear-gradient(90deg, #667eea, #764ba2);
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     }
 
     .contact-form-icon {
       font-size: 3rem;
       margin-bottom: 30px;
       display: block;
+      filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.2));
     }
 
     .contact-form-card h2 {
@@ -231,27 +273,28 @@
     }
 
     .form-group {
-      margin-bottom: 25px;
+      margin-bottom: 28px;
       position: relative;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: #2c3e50;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     .form-group input,
     .form-group textarea {
       width: 100%;
-      padding: 16px 20px;
+      padding: 18px 22px;
       border: 2px solid #e9ecef;
-      border-radius: 12px;
+      border-radius: 14px;
       font-size: 16px;
       transition: all 0.3s ease;
       background: #f8f9fa;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
     }
 
     .form-group input:focus,
@@ -259,12 +302,15 @@
       outline: none;
       border-color: #667eea;
       background: white;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      box-shadow:
+        0 0 0 3px rgba(102, 126, 234, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.02);
+      transform: translateY(-1px);
     }
 
     .form-group textarea {
       resize: vertical;
-      min-height: 140px;
+      min-height: 150px;
       font-family: inherit;
     }
 
@@ -272,8 +318,8 @@
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       border: none;
-      padding: 18px 40px;
-      font-size: 1.1rem;
+      padding: 20px 45px;
+      font-size: 1.15rem;
       font-weight: 600;
       border-radius: 50px;
       cursor: pointer;
@@ -281,6 +327,7 @@
       width: 100%;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 6px 24px rgba(102, 126, 234, 0.3);
     }
 
     .submit-btn::before {
@@ -290,8 +337,8 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transition: left 0.6s;
     }
 
     .submit-btn:hover::before {
@@ -299,8 +346,8 @@
     }
 
     .submit-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(102, 126, 234, 0.4);
     }
 
     /* Success Message */
@@ -308,11 +355,13 @@
       display: none;
       background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
       color: white;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
+      padding: 25px;
+      border-radius: 14px;
+      margin-top: 25px;
       text-align: center;
       font-weight: 500;
+      font-size: 1.1rem;
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
     }
 
     /* Responsive Design */
@@ -349,6 +398,10 @@
 
       .social-grid {
         grid-template-columns: 1fr;
+      }
+
+      .contact-info-item {
+        padding: 20px;
       }
     }
   </style>
@@ -464,5 +517,17 @@
       }, 5000);
     });
   </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+      <p class="copyright">&copy; 2024 Tugwemo. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>

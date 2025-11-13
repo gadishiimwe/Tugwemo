@@ -23,7 +23,10 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.03"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.03"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.02"/><circle cx="10" cy="50" r="0.5" fill="white" opacity="0.02"/><circle cx="90" cy="30" r="0.5" fill="white" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      background:
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
       pointer-events: none;
     }
 
@@ -43,31 +46,39 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .policy-hero p {
       font-size: 1.3rem;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.95);
       margin-bottom: 40px;
       line-height: 1.6;
+      font-weight: 300;
     }
 
     .back-link {
       position: absolute;
       top: 30px;
       left: 30px;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.9);
       text-decoration: none;
       font-weight: 500;
       display: flex;
       align-items: center;
       gap: 8px;
       transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 16px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .back-link:hover {
       color: white;
       transform: translateX(-5px);
+      background: rgba(255, 255, 255, 0.2);
     }
 
     /* Main Content */
@@ -85,7 +96,9 @@
     .policy-card {
       background: white;
       border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.1),
+        0 8px 32px rgba(102, 126, 234, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.8);
       overflow: hidden;
       position: relative;
@@ -99,18 +112,21 @@
       right: 0;
       height: 4px;
       background: linear-gradient(90deg, #667eea, #764ba2);
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     }
 
     .policy-header {
       padding: 50px 50px 30px;
       text-align: center;
       border-bottom: 1px solid #f1f3f4;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
     }
 
     .policy-header-icon {
       font-size: 3rem;
       margin-bottom: 20px;
       display: block;
+      filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.2));
     }
 
     .policy-header h1 {
@@ -129,6 +145,7 @@
       line-height: 1.6;
       max-width: 600px;
       margin: 0 auto;
+      font-weight: 400;
     }
 
     .policy-body {
@@ -137,6 +154,16 @@
 
     .policy-section {
       margin-bottom: 40px;
+      padding: 30px;
+      background: rgba(102, 126, 234, 0.02);
+      border-radius: 12px;
+      border-left: 3px solid #667eea;
+      transition: all 0.3s ease;
+    }
+
+    .policy-section:hover {
+      background: rgba(102, 126, 234, 0.04);
+      transform: translateX(2px);
     }
 
     .policy-section h2 {
@@ -161,6 +188,7 @@
       color: #495057;
       line-height: 1.7;
       margin-bottom: 15px;
+      font-size: 1rem;
     }
 
     .policy-list {
@@ -173,46 +201,53 @@
       margin-bottom: 8px;
       position: relative;
       padding-left: 20px;
+      line-height: 1.6;
     }
 
     .policy-list li::before {
-      content: '•';
+      content: '▸';
       color: #667eea;
       font-weight: bold;
       position: absolute;
       left: 0;
+      font-size: 0.9em;
     }
 
     .policy-highlight {
-      background: rgba(102, 126, 234, 0.05);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
       border-left: 4px solid #667eea;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 0 8px 8px 0;
+      padding: 25px;
+      margin: 25px 0;
+      border-radius: 8px;
+      border: 1px solid rgba(102, 126, 234, 0.1);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.08);
     }
 
     .policy-highlight h3 {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: #2c3e50;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .policy-highlight p {
       margin-bottom: 0;
       color: #495057;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
     .policy-contact {
-      background: rgba(102, 126, 234, 0.05);
-      border-radius: 12px;
-      padding: 30px;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+      border-radius: 16px;
+      padding: 35px;
       text-align: center;
       margin-top: 40px;
+      border: 1px solid rgba(102, 126, 234, 0.1);
     }
 
     .policy-contact h3 {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 600;
       color: #2c3e50;
       margin-bottom: 10px;
@@ -220,25 +255,27 @@
 
     .policy-contact p {
       color: #6c757d;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      font-size: 1rem;
     }
 
     .policy-contact-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 24px;
+      padding: 14px 28px;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       text-decoration: none;
       border-radius: 25px;
       font-weight: 500;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
     }
 
     .policy-contact-link:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
     }
 
     /* Responsive Design */
@@ -273,6 +310,11 @@
 
       .policy-body {
         padding: 40px 30px;
+      }
+
+      .policy-section {
+        padding: 20px;
+        margin-bottom: 30px;
       }
 
       .policy-section h2 {
@@ -377,5 +419,17 @@
       </div>
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <p class="copyright">&copy; 2024 Tugwemo. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>

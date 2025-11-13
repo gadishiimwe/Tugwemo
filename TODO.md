@@ -1,9 +1,12 @@
-# TODO List for Mobile Video Layout and Chat Auto-Scroll
+# TODO: Update Website Design
 
 ## Tasks
-- [x] Keep video object-fit as cover for better visibility
-- [x] Increase video-container max-height to 85vh on mobile
-- [x] Reduce video-section height from calc(100vh - 320px) to calc(100dvh - 180px) on mobile
-- [x] Reduce chat height to 150px on mobile for more video space
-- [x] Implement auto-scroll to new messages when received
-- [ ] Test video screen size and chat layout on Android phone
+- [x] Update navbar CSS to eye-catching design (gradients, animations, hover effects)
+- [x] Add navbar to index.html
+- [x] Add navbar to video.html
+- [x] Add navbar to login.html
+- [x] Add navbar to register.html
+- [x] Modify index.html hero section: remove trust-indicators, hero-links, scroll-indicator; keep logo, typing-container, social-proof, hero-description, cta-buttons, footer
+- [x] Ensure cta-buttons are horizontal (already are, but confirm)
+- [x] Add navbar to About, Terms of Service, Privacy Policy, Contact pages only
+- [x] Test changes by running locally
