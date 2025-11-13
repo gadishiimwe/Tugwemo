@@ -130,34 +130,7 @@ body {
   position: relative;
 }
 
-.logo-container {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 600px;
-  height: 120px;
-  margin-bottom: 15px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
-              inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  position: relative;
-}
 
-.logo-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-  border-radius: 20px;
-  pointer-events: none;
-}
 
 .text-logo {
   font-size: 4rem;
