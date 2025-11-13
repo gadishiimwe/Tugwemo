@@ -197,7 +197,7 @@
           localStorage.setItem("token", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
           showMessage(langData.success, "success");
-          setTimeout(() => (window.location.href = "/index.html"), 1000);
+          setTimeout(() => (window.location.href = "/video.html"), 1000);
         } else {
           showMessage(data.message || langData.error, "error");
         }

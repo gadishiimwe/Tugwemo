@@ -1,7 +1,6 @@
-# TODO List for Logo and Favicon Update
+# TODO List for Login Redirect Update
 
 ## Tasks
-- [x] Replace TUGWEMO text heading with logo image in hero section
-- [x] Update favicon to use favicon.ico
-- [x] Style the hero logo with appropriate sizing and effects
-- [ ] Test logo display and favicon on Vercel
+- [x] Update login.html to redirect to video.html after successful login
+- [x] Update register.html to redirect to video.html after successful registration
+- [ ] Test login and registration redirects on Vercel
