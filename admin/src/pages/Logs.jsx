@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Download, Search, Filter } from 'lucide-react'
+import API_BASE_URL from '../config'
 
 const Logs = () => {
   const [logs, setLogs] = useState([])
@@ -17,7 +18,7 @@ const Logs = () => {
   const fetchLogs = async () => {
     setLoading(true)
     try {
-      const response = await axios.get('/api/admin/logs', {
+      const response = await axios.get(`${API_BASE_URL}/admin/logs`, {
         params: { page: currentPage, search: searchTerm, level: filter }
       })
       setLogs(response.data.logs)
@@ -30,7 +31,7 @@ const Logs = () => {
 
   const exportLogs = async () => {
     try {
-      const response = await axios.get('/api/admin/logs/export', {
+      const response = await axios.get(`${API_BASE_URL}/admin/logs/export`, {
         params: { search: searchTerm, level: filter },
         responseType: 'blob'
       })

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Flag, Eye, CheckCircle, XCircle, AlertTriangle, Search, Filter } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import Modal from '../components/Modal'
+import API_BASE_URL from '../config'
 
 const Reports = () => {
   const { token } = useAuth()
@@ -25,7 +26,7 @@ const Reports = () => {
     try {
       setLoading(true)
       const response = await fetch(
-        `http://localhost:8000/api/admin/reports?page=${page}&limit=${pagination.limit}&status=${filter}`,
+        `${API_BASE_URL}/admin/reports?page=${page}&limit=${pagination.limit}&status=${filter}`,
         {
           headers: {
             'Authorization': `Bearer ${token}`
@@ -49,7 +50,7 @@ const Reports = () => {
   const handleResolveReport = async (reportId, action) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/admin/reports/${reportId}/resolve`,
+        `${API_BASE_URL}/admin/reports/${reportId}/resolve`,
         {
           method: 'POST',
           headers: {
@@ -73,7 +74,7 @@ const Reports = () => {
   const handleBanUser = async (userId, reason) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/admin/users/${userId}/ban`,
+        `${API_BASE_URL}/admin/users/${userId}/ban`,
         {
           method: 'POST',
           headers: {
@@ -102,7 +103,7 @@ const Reports = () => {
   const handleKickUser = async (userId, reason) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/admin/users/${userId}/kick`,
+        `${API_BASE_URL}/admin/users/${userId}/kick`,
         {
           method: 'POST',
           headers: {

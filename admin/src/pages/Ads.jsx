@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Plus, Edit, Trash2, Eye, EyeOff } from 'lucide-react'
+import API_BASE_URL from '../config'
 
 const Ads = () => {
   const [ads, setAds] = useState([])
@@ -23,7 +24,7 @@ const Ads = () => {
 
   const fetchAds = async () => {
     try {
-      const response = await axios.get('/api/admin/adverts')
+      const response = await axios.get(`${API_BASE_URL}/admin/adverts`)
       setAds(response.data.ads)
     } catch (error) {
       console.error('Failed to fetch ads:', error)
@@ -34,9 +35,9 @@ const Ads = () => {
     e.preventDefault()
     try {
       if (editingAd) {
-        await axios.put(`/api/admin/adverts/${editingAd._id}`, formData)
+        await axios.put(`${API_BASE_URL}/admin/adverts/${editingAd._id}`, formData)
       } else {
-        await axios.post('/api/admin/adverts', formData)
+        await axios.post(`${API_BASE_URL}/admin/adverts`, formData)
       }
       fetchAds()
       resetForm()
@@ -63,7 +64,7 @@ const Ads = () => {
   const handleDelete = async (adId) => {
     if (window.confirm('Are you sure you want to delete this ad?')) {
       try {
-        await axios.delete(`/api/admin/adverts/${adId}`)
+        await axios.delete(`${API_BASE_URL}/admin/adverts/${adId}`)
         fetchAds()
       } catch (error) {
         console.error('Failed to delete ad:', error)
@@ -73,7 +74,7 @@ const Ads = () => {
 
   const toggleAdStatus = async (adId) => {
     try {
-      await axios.patch(`/api/admin/adverts/${adId}/toggle`)
+      await axios.patch(`${API_BASE_URL}/admin/adverts/${adId}/toggle`)
       fetchAds()
     } catch (error) {
       console.error('Failed to toggle ad status:', error)
@@ -170,12 +171,12 @@ const Ads = () => {
                       formDataUpload.append('image', file);
 
                       try {
-                        const response = await axios.post('/api/admin/upload-ad-image', formDataUpload, {
+                        const response = await axios.post(`${API_BASE_URL}/admin/upload-ad-image`, formDataUpload, {
                           headers: {
                             'Content-Type': 'multipart/form-data',
                           },
                         });
-                        setFormData({ ...formData, imageUrl: `http://localhost:8000${response.data.imageUrl}` });
+                        setFormData({ ...formData, imageUrl: `${API_BASE_URL}${response.data.imageUrl}` });
                       } catch (error) {
                         console.error('Failed to upload image:', error);
                         alert('Failed to upload image. Please try again.');

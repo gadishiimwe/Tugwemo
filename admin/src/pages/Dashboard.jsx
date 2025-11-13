@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Users, MessageSquare, Eye, TrendingUp, AlertTriangle, AlertCircle, Shield, Info } from 'lucide-react'
+import API_BASE_URL from '../config'
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -17,7 +18,7 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await axios.get('/api/admin/dashboard')
+      const response = await axios.get(`${API_BASE_URL}/admin/dashboard`)
       setStats(response.data.stats)
       setRecentActivity(response.data.recentActivity)
     } catch (error) {

@@ -8,3 +8,12 @@
 
 - [x] Test admin login after changes
 - [x] Verify profile endpoint works
+- [x] Fix admin API URLs to use production backend URL:
+  - [x] Reports.jsx
+  - [x] Dashboard.jsx
+  - [x] Users.jsx
+  - [x] Analytics.jsx
+  - [x] Ads.jsx
+  - [x] Settings.jsx
+  - [x] Logs.jsx
+- [ ] Deploy admin changes to Vercel

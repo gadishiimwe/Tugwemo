@@ -28,6 +28,7 @@ import {
   AlertTriangle,
   Info
 } from 'lucide-react'
+import API_BASE_URL from '../config'
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('general')
@@ -146,7 +147,7 @@ const Settings = () => {
   const fetchSettings = async () => {
     setLoading(true)
     try {
-      const response = await axios.get('/api/admin/settings')
+      const response = await axios.get(`${API_BASE_URL}/admin/settings`)
       setSettings(prev => ({ ...prev, ...response.data.settings }))
     } catch (error) {
       console.error('Failed to fetch settings:', error)
@@ -167,7 +168,7 @@ const Settings = () => {
   const handleSave = async () => {
     setSaving(true)
     try {
-      await axios.put('/api/admin/settings', settings)
+      await axios.put(`${API_BASE_URL}/admin/settings`, settings)
       alert('Settings saved successfully!')
       fetchSettingsHistory()
     } catch (error) {
@@ -220,31 +221,31 @@ const Settings = () => {
   const quickActions = [
     {
       name: 'Clear System Cache',
-      action: () => axios.post('/api/admin/system/clear-cache'),
+      action: () => axios.post(`${API_BASE_URL}/admin/system/clear-cache`),
       color: 'gray',
       description: 'Clear all cached data'
     },
     {
       name: 'Create Database Backup',
-      action: () => axios.post('/api/admin/system/backup'),
+      action: () => axios.post(`${API_BASE_URL}/admin/system/backup`),
       color: 'green',
       description: 'Create full database backup'
     },
     {
       name: 'Optimize Database',
-      action: () => axios.post('/api/admin/system/optimize-db'),
+      action: () => axios.post(`${API_BASE_URL}/admin/system/optimize-db`),
       color: 'blue',
       description: 'Optimize database performance'
     },
     {
       name: 'Rotate Logs',
-      action: () => axios.post('/api/admin/system/rotate-logs'),
+      action: () => axios.post(`${API_BASE_URL}/admin/system/rotate-logs`),
       color: 'yellow',
       description: 'Archive old log files'
     },
     {
       name: 'System Health Check',
-      action: () => axios.get('/api/admin/system/health'),
+      action: () => axios.get(`${API_BASE_URL}/admin/system/health`),
       color: 'indigo',
       description: 'Run system diagnostics'
     },
@@ -252,7 +253,7 @@ const Settings = () => {
       name: 'Restart Server',
       action: () => {
         if (window.confirm('Are you sure you want to restart the server? This will disconnect all users.')) {
-          axios.post('/api/admin/system/restart')
+          axios.post(`${API_BASE_URL}/admin/system/restart`)
         }
       },
       color: 'red',

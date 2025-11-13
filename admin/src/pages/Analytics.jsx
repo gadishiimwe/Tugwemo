@@ -15,6 +15,7 @@ import {
   Pie,
   Cell
 } from 'recharts'
+import API_BASE_URL from '../config'
 
 const Analytics = () => {
   const [analytics, setAnalytics] = useState({
@@ -32,7 +33,7 @@ const Analytics = () => {
   const fetchAnalytics = async () => {
     setLoading(true)
     try {
-      const response = await axios.get('/api/admin/analytics')
+      const response = await axios.get(`${API_BASE_URL}/admin/analytics`)
       setAnalytics(response.data)
     } catch (error) {
       console.error('Failed to fetch analytics:', error)

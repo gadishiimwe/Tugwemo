@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Search, Ban, MessageSquare, Eye, MoreVertical, UserX, VolumeX, Volume2, Edit } from 'lucide-react'
 import Modal from '../components/Modal'
+import API_BASE_URL from '../config'
 
 const Users = () => {
   const [users, setUsers] = useState([])
@@ -21,7 +22,7 @@ const Users = () => {
   const fetchUsers = async () => {
     setLoading(true)
     try {
-      const response = await axios.get('/api/admin/users', {
+      const response = await axios.get(`${API_BASE_URL}/admin/users`, {
         params: { page: currentPage, search: searchTerm }
       })
       setUsers(response.data.users)
@@ -50,7 +51,7 @@ const Users = () => {
       if (action === 'view') {
         openModal(user, 'view')
       } else if (action === 'kick') {
-        await axios.post(`/api/admin/users/${userId}/kick`, { reason: 'Kicked by admin' })
+        await axios.post(`${API_BASE_URL}/admin/users/${userId}/kick`, { reason: 'Kicked by admin' })
         alert('User kicked successfully!')
         fetchUsers()
         closeModal()
@@ -59,11 +60,11 @@ const Users = () => {
       } else if (action === 'mute') {
         openModal(user, 'mute')
       } else if (action === 'unmute') {
-        await axios.post(`/api/admin/users/${userId}/unmute`)
+        await axios.post(`${API_BASE_URL}/admin/users/${userId}/unmute`)
         fetchUsers()
         closeModal()
       } else if (action === 'unban') {
-        await axios.post(`/api/admin/users/${userId}/unban`)
+        await axios.post(`${API_BASE_URL}/admin/users/${userId}/unban`)
         fetchUsers()
         closeModal()
       }
@@ -75,7 +76,7 @@ const Users = () => {
 
   const handleBanUser = async (reason, duration) => {
     try {
-      await axios.post(`/api/admin/users/${selectedUser._id}/ban`, { reason, duration })
+      await axios.post(`${API_BASE_URL}/admin/users/${selectedUser._id}/ban`, { reason, duration })
       alert('User banned successfully!')
       fetchUsers()
       closeModal()
@@ -87,7 +88,7 @@ const Users = () => {
 
   const handleMuteUser = async (duration) => {
     try {
-      await axios.post(`/api/admin/users/${selectedUser._id}/mute`, { duration })
+      await axios.post(`${API_BASE_URL}/admin/users/${selectedUser._id}/mute`, { duration })
       fetchUsers()
       closeModal()
     } catch (error) {
