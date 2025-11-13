@@ -16,4 +16,6 @@
   - [x] Ads.jsx
   - [x] Settings.jsx
   - [x] Logs.jsx
+  - [x] Notifications.jsx
+  - [x] Fix reports page to show all status reports (pending, resolved, dismissed)
 - [ ] Deploy admin changes to Vercel

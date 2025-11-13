@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Bell, AlertTriangle, UserPlus, Flag, Eye } from 'lucide-react'
 import axios from 'axios'
+import API_BASE_URL from '../config'
 
 const Notifications = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -27,7 +28,7 @@ const Notifications = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await axios.get('/api/admin/notifications')
+      const response = await axios.get(`${API_BASE_URL}/admin/notifications`)
       setNotifications(response.data.notifications)
       setUnreadCount(response.data.unreadCount)
     } catch (error) {
@@ -37,7 +38,7 @@ const Notifications = () => {
 
   const markAsRead = async (notificationId) => {
     try {
-      await axios.patch(`/api/admin/notifications/${notificationId}/read`)
+      await axios.patch(`${API_BASE_URL}/admin/notifications/${notificationId}/read`)
       fetchNotifications()
     } catch (error) {
       console.error('Failed to mark notification as read:', error)
@@ -46,7 +47,7 @@ const Notifications = () => {
 
   const markAllAsRead = async () => {
     try {
-      await axios.patch('/api/admin/notifications/read-all')
+      await axios.patch(`${API_BASE_URL}/admin/notifications/read-all`)
       fetchNotifications()
     } catch (error) {
       console.error('Failed to mark all notifications as read:', error)

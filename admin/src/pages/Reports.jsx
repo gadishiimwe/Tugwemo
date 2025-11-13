@@ -175,10 +175,10 @@ const Reports = () => {
             onChange={(e) => setFilter(e.target.value)}
             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
-            <option value="all">All Reports</option>
             <option value="pending">Pending</option>
             <option value="resolved">Resolved</option>
             <option value="dismissed">Dismissed</option>
+            <option value="all">All Reports</option>
           </select>
         </div>
       </div>
