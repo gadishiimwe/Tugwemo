@@ -541,7 +541,7 @@ body {
 
 /* Features Section */
 .features {
-  padding: 80px 0;
+  padding: 40px 0;
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   position: relative;
 }
@@ -653,7 +653,7 @@ body {
 
 /* About Section */
 .about {
-  padding: 60px 0;
+  padding: 30px 0;
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
 }
 
@@ -882,7 +882,7 @@ body {
 
 /* Stats Section */
 .stats {
-  padding: 30px 0;
+  padding: 20px 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
   overflow: hidden;
@@ -1055,7 +1055,7 @@ body {
 
 /* Testimonials Section */
 .testimonials {
-  padding: 80px 0;
+  padding: 40px 0;
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
   color: white;
 }
