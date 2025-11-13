@@ -9,6 +9,7 @@ body {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   color: #333333;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1010,12 +1011,12 @@ body.dark .chat-input button {
 
   .video-section {
     flex-direction: column;
-    height: calc(1000vh - 320px);
+    height: calc(100dvh - 320px);
     padding: 5px;
   }
 
   .video-container {
-    max-height: 5000vh;
+    max-height: 50vh;
     min-height: 180px;
   }
 
