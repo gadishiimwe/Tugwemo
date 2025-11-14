@@ -1,7 +1,11 @@
 {
   "name": "tugwemo",
   "private": true,
-  "workspaces": ["client", "server", "admin"],
+  "workspaces": [
+    "client",
+    "server",
+    "admin"
+  ],
   "scripts": {
     "build": "npm run build --prefix client && npm run build --prefix admin",
     "dev:client": "npm --prefix client run dev",
@@ -11,5 +15,8 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.13.1"
   }
 }
