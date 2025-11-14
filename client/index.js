@@ -2,6 +2,9 @@
 // Tugwemo Video JS
 // ======================
 
+// Set your backend API base URL (important for Vercel + Render setup)
+const BACKEND_URL = "https://tugwemo-backend.onrender.com"; // change if backend name differs
+
 // Global State
 let peer;
 const myVideo = document.getElementById('my-video');
@@ -23,6 +26,12 @@ let strangerInfo = null;
 const findingUserOverlay = document.getElementById('finding-user-overlay');
 let strangerStream = new MediaStream();
 let isStrangerVideoSet = false;
+
+// Chat-related variables (may be null if chat is disabled)
+let newMessagesNotification = document.getElementById('new-messages-notification');
+let newMessagesCount = document.getElementById('new-messages-count');
+let newMessagesCountValue = 0;
+let isUserAtBottom = true;
 
 // ======================
 // Start camera/mic
@@ -125,7 +134,7 @@ socket.on('ads-data', data => {
 });
 
 function fetchAdsForDisplay() {
-  fetch('/api/auth/ads')
+  fetch(`${BACKEND_URL}/api/auth/ads`)
     .then(res => res.json())
     .then(data => {
       if (window.AdManager && data.ads) {
@@ -316,25 +325,34 @@ socket.on('ice:reply', async ({ candidate, from }) => {
 socket.on('roomid', id => roomid = id);
 
 function sendMessage() {
-  const input = document.querySelector('input').value.trim();
+  const inputEl = document.querySelector('input');
+  if (!inputEl) return;
+  const input = inputEl.value.trim();
   if (!input) return;
   socket.emit('send-message', input, type, roomid);
 
   const msghtml = `<div class="msg"><b>You: </b><span id='msg'>${input}</span></div>`;
-  document.querySelector('.chat-wrapper').innerHTML += msghtml;
-  document.querySelector('.chat-wrapper').scrollTop = document.querySelector('.chat-wrapper').scrollHeight;
-  document.querySelector('input').value = '';
+  const chatWrapper = document.querySelector('.chat-wrapper');
+  if (chatWrapper) {
+    chatWrapper.innerHTML += msghtml;
+    chatWrapper.scrollTop = chatWrapper.scrollHeight;
+  }
+  inputEl.value = '';
 }
 
-button.onclick = sendMessage;
-document.querySelector('input').addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+if (button) button.onclick = sendMessage;
+const inputEl = document.querySelector('input');
+if (inputEl) inputEl.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
 
 socket.on('get-message', (input, type) => {
   const strangerName = strangerInfo?.name || 'Stranger';
   const msghtml = `<div class="msg"><b>${strangerName}: </b><span id='msg'>${input}</span></div>`;
-  document.querySelector('.chat-wrapper').innerHTML += msghtml;
-  // Auto-scroll to new message
-  document.querySelector('.chat-wrapper').scrollTop = document.querySelector('.chat-wrapper').scrollHeight;
+  const chatWrapper = document.querySelector('.chat-wrapper');
+  if (chatWrapper) {
+    chatWrapper.innerHTML += msghtml;
+    // Auto-scroll to new message
+    chatWrapper.scrollTop = chatWrapper.scrollHeight;
+  }
 });
 
 socket.on('user-info', data => {
@@ -353,41 +371,49 @@ const emojiList = document.getElementById('emoji-list');
 const chatInput = document.querySelector('.chat-input input');
 
 // Toggle emoji picker
-emojiBtn.addEventListener('click', () => {
-  emojiPicker.classList.toggle('show');
+if (emojiBtn) emojiBtn.addEventListener('click', () => {
+  if (emojiPicker) emojiPicker.classList.toggle('show');
 });
 
 // Add emoji click behavior
-emojiList.querySelectorAll('span').forEach(emoji => {
+if (emojiList) emojiList.querySelectorAll('span').forEach(emoji => {
   emoji.addEventListener('click', () => {
-    chatInput.value += emoji.textContent;
-    emojiPicker.classList.remove('show');
-    chatInput.focus();
+    if (chatInput) {
+      chatInput.value += emoji.textContent;
+      if (emojiPicker) emojiPicker.classList.remove('show');
+      chatInput.focus();
+    }
   });
 });
 
 
 const chatWrapper = document.querySelector('.chat-wrapper');
-chatWrapper.addEventListener('scroll', () => {
-  const isAtBottom = chatWrapper.scrollHeight - chatWrapper.scrollTop <= chatWrapper.clientHeight + 10;
-  isUserAtBottom = isAtBottom;
-  if (isAtBottom && newMessagesCountValue > 0) {
+if (chatWrapper) {
+  chatWrapper.addEventListener('scroll', () => {
+    const isAtBottom = chatWrapper.scrollHeight - chatWrapper.scrollTop <= chatWrapper.clientHeight + 10;
+    isUserAtBottom = isAtBottom;
+    if (isAtBottom && newMessagesCountValue > 0) {
+      newMessagesCountValue = 0;
+      updateNewMessagesNotification();
+    }
+  });
+}
+
+if (newMessagesNotification) {
+  newMessagesNotification.addEventListener('click', () => {
+    if (chatWrapper) chatWrapper.scrollTop = chatWrapper.scrollHeight;
     newMessagesCountValue = 0;
     updateNewMessagesNotification();
-  }
-});
-
-newMessagesNotification.addEventListener('click', () => {
-  chatWrapper.scrollTop = chatWrapper.scrollHeight;
-  newMessagesCountValue = 0;
-  updateNewMessagesNotification();
-  isUserAtBottom = true;
-});
+    isUserAtBottom = true;
+  });
+}
 
 function updateNewMessagesNotification() {
-  newMessagesCount.textContent = newMessagesCountValue;
-  if (newMessagesCountValue > 0) newMessagesNotification.classList.add('show');
-  else newMessagesNotification.classList.remove('show');
+  if (newMessagesCount) newMessagesCount.textContent = newMessagesCountValue;
+  if (newMessagesNotification) {
+    if (newMessagesCountValue > 0) newMessagesNotification.classList.add('show');
+    else newMessagesNotification.classList.remove('show');
+  }
 }
 
 // ======================
