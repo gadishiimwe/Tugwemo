@@ -8,6 +8,7 @@
   <link rel="icon" href="public/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="public/style.css">
   <link rel="stylesheet" href="public/videostyle.css">
+  <script src="./i18n.js"></script>
 </head>
 
 <body>
@@ -19,7 +20,7 @@
         <div class="dot"></div>
         <div class="dot"></div>
       </div>
-      <div class="finding-text">Finding a user...</div>
+      <div class="finding-text" data-i18n="video.finding">Finding a user...</div>
 
       <!-- Waiting Ad -->
       <div id="waiting-ad-banner" class="ad-banner waiting-ad" style="display: none;">
@@ -39,13 +40,13 @@
   <div class="video-section">
     <div class="video-container stranger-video">
       <video id="video" class="remote-video" autoplay playsinline></video>
-      <div class="video-label" id="stranger-label">Stranger</div>
+      <div class="video-label" id="stranger-label" data-i18n="video.stranger">Stranger</div>
       <button id="report-stranger" class="report-stranger-btn" title="Report User">🚨</button>
     </div>
 
     <div class="video-container user-video">
       <video id="my-video" class="local-video" autoplay muted playsinline></video>
-      <div class="video-label">You</div>
+      <div class="video-label" data-i18n="video.you">You</div>
     </div>
   </div>
 
@@ -88,28 +89,28 @@
   <div id="report-modal" class="report-modal">
     <div class="report-modal-content">
       <div class="report-modal-header">
-        <h3>Report User</h3>
+        <h3 data-i18n="video.reportTitle">Report User</h3>
         <button class="report-modal-close">&times;</button>
       </div>
       <div class="report-modal-body">
-        <label for="report-reason">Reason for reporting:</label>
+        <label for="report-reason" data-i18n="video.reportReason">Reason for reporting:</label>
         <select id="report-reason" class="report-reason-select">
-          <option value="">Select a reason...</option>
-          <option value="inappropriate_behavior">Inappropriate Behavior</option>
-          <option value="harassment">Harassment</option>
-          <option value="spam">Spam</option>
-          <option value="nudity">Nudity/Adult Content</option>
-          <option value="violence">Violence</option>
-          <option value="hate_speech">Hate Speech</option>
-          <option value="other">Other</option>
+          <option value="" data-i18n="video.selectReason">Select a reason...</option>
+          <option value="inappropriate_behavior" data-i18n="video.inappropriate">Inappropriate Behavior</option>
+          <option value="harassment" data-i18n="video.harassment">Harassment</option>
+          <option value="spam" data-i18n="video.spam">Spam</option>
+          <option value="nudity" data-i18n="video.nudity">Nudity/Adult Content</option>
+          <option value="violence" data-i18n="video.violence">Violence</option>
+          <option value="hate_speech" data-i18n="video.hateSpeech">Hate Speech</option>
+          <option value="other" data-i18n="video.other">Other</option>
         </select>
-        <label for="report-details">Additional details (optional):</label>
-        <textarea id="report-details" class="report-details-textarea" placeholder="Please provide more details..."></textarea>
-        <p>📸 A screenshot will be automatically captured with your report.</p>
+        <label for="report-details" data-i18n="video.details">Additional details (optional):</label>
+        <textarea id="report-details" class="report-details-textarea" data-i18n-placeholder="video.detailsPlaceholder" placeholder="Please provide more details..."></textarea>
+        <p data-i18n="video.screenshot">📸 A screenshot will be automatically captured with your report.</p>
       </div>
       <div class="report-modal-footer">
-        <button class="report-modal-cancel">Cancel</button>
-        <button class="report-modal-submit">Submit Report</button>
+        <button class="report-modal-cancel" data-i18n="video.cancel">Cancel</button>
+        <button class="report-modal-submit" data-i18n="video.submit">Submit Report</button>
       </div>
     </div>
   </div>
@@ -128,9 +129,9 @@
 
   <!-- Controls -->
   <div class="controls">
-    <button id="next" class="btn next"><span class="btn-text">Next</span></button>
-    <button id="stop" class="btn stop"><span class="btn-text">Stop</span></button>
-    <button id="mute" class="btn mute"><span class="btn-text">Mute</span></button>
+    <button id="next" class="btn next"><span class="btn-text" data-i18n="video.next">Next</span></button>
+    <button id="stop" class="btn stop"><span class="btn-text" data-i18n="video.stop">Stop</span></button>
+    <button id="mute" class="btn mute"><span class="btn-text" data-i18n="video.mute">Mute</span></button>
   </div>
 
   <!-- Scripts -->
