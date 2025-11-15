@@ -2,7 +2,7 @@
 
 ![Tugwemo Logo](./client/public/Tugwemo.png)
 
-Tugwemo is Rwanda's premier platform for anonymous video chat and meaningful connections. Built with modern web technologies, it provides a safe, inclusive space for people to meet, share stories, and build lasting relationships through anonymous video chatting.
+Tugwemo is Africa's premier platform for anonymous video chat and meaningful connections. Built with modern web technologies, it provides a safe, inclusive space for people to meet, share stories, and build lasting relationships through anonymous video chatting.
 
 ## 🌍 About Tugwemo
 
@@ -17,7 +17,7 @@ Tugwemo was born from the belief that genuine human connections transcend geogra
 - **Learn and Grow**: Discover new cultures, languages, and worldviews
 
 ### Cultural Significance
-As Rwanda's first anonymous video chat platform, Tugwemo celebrates the country's rich cultural heritage while embracing global connectivity. We support multiple languages (Kinyarwanda, English, French, Swahili) and incorporate Rwanda-specific features that honor our traditions while welcoming the world.
+As Africa's first anonymous video chat platform, Tugwemo celebrates the continent's rich cultural heritage while embracing global connectivity. We support multiple languages (Kinyarwanda, English, French, Swahili) and incorporate Africa-specific features that honor our traditions while welcoming the world.
 
 ### Safety First
 We prioritize user safety above all else, implementing enterprise-grade security measures, AI-powered content moderation, and comprehensive reporting systems to ensure every user has a positive experience.
@@ -30,7 +30,7 @@ We prioritize user safety above all else, implementing enterprise-grade security
 - **Enterprise Security**: Bank-level encryption, AI-powered moderation, and instant reporting tools
 - **Multilingual Support**: Chat in Kinyarwanda, French, English, or Swahili
 - **Smart Matching**: Advanced algorithms connect users based on interests, location, and preferences
-- **Cultural Connection**: Rwanda-specific features celebrating rich cultural heritage
+- **Cultural Connection**: Africa-specific features celebrating rich cultural heritage
 
 ### Technical Features
 - **Real-time Communication**: WebRTC-powered peer-to-peer video and audio
@@ -262,7 +262,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Built with IX in Rwanda
+- Built with IX in Africa
 - Inspired by the spirit of "Tugwemo" - connecting people
 - Thanks to the open-source community for amazing tools and libraries
 
@@ -275,4 +275,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with IX in Rwanda for the world** 🇷🇼
+**Made with IX in Africa for the world** 🇷🇼

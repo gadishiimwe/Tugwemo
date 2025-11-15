@@ -1,10 +1,10 @@
 # Tugwemo Project Documentation
 
 ## Overview
-Tugwemo is a comprehensive anonymous video chat platform designed to facilitate meaningful connections in Rwanda and globally. The platform provides a safe, secure, and user-friendly environment for anonymous video interactions, emphasizing privacy, authenticity, and community building.
+Tugwemo is a comprehensive anonymous video chat platform designed to facilitate meaningful connections in Africa and globally. The platform provides a safe, secure, and user-friendly environment for anonymous video interactions, emphasizing privacy, authenticity, and community building.
 
 ## Mission
-To be Rwanda's premier platform for anonymous video chat and meaningful connections, offering cutting-edge technology with unmatched privacy. The platform aims to revolutionize social interaction by providing a space where users can connect authentically without the constraints of traditional social media.
+To be Africa's premier platform for anonymous video chat and meaningful connections, offering cutting-edge technology with unmatched privacy. The platform aims to revolutionize social interaction by providing a space where users can connect authentically without the constraints of traditional social media.
 
 ## Vision
 Create a global community where people can meet, chat, and form connections anonymously, fostering genuine relationships in a digital world that prioritizes safety and respect.

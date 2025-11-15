@@ -1,6 +1,11 @@
-- [x] Add BACKEND_URL constant to client/index.js
-- [x] Update fetchAdsForDisplay to use BACKEND_URL
-- [x] Declare missing variables: newMessagesNotification, newMessagesCount, newMessagesCountValue, isUserAtBottom
-- [x] Add null checks for element assignments (onclick, addEventListener)
-- [x] Add favicon link to video.html
-- [x] Test fixes by running client (npm run dev executed)
+# TODO: Change Rwanda to Africa and Fix Button Translation
+
+## Tasks
+- [x] Update client/locales/en.json: Change "Rwanda" to "Africa" in description and fix "getStarted" to "Get Started"
+- [x] Update client/locales/fr.json: Change "Rwanda" to "Africa"
+- [x] Update client/locales/rw.json: Change "Rwanda" to "Africa"
+- [x] Update README.md: Replace "Rwanda" with "Africa"
+- [x] Update PROJECT_DOCUMENTATION.md: Replace "Rwanda" with "Africa"
+- [x] Verify client/index.html has correct "Africa" references (already checked)
+- [x] Test the application to ensure button text changes with language selection
+- [x] Start server and verify changes
