@@ -30,3 +30,10 @@ export interface CustomRoom {
   createdAt: Date;
   maxUsers: number;
 }
+
+export interface RoomJoinData {
+  roomCode: string;
+  socketId: string;
+  userInfo?: { name: string; age?: number; sex?: string } | null;
+  userId?: string | null;
+}

@@ -87,6 +87,9 @@
         <button class="cta-button secondary" onclick="redirect()" style="width: 140px;">
           Tangira
         </button>
+        <button id="group-btn" class="cta-button primary" style="width: 140px;" onclick="window.location.href='group.html'">
+          Group
+        </button>
       </div>
     </div>
   </section>
@@ -103,7 +106,7 @@
     </div>
   </footer>
 </body>
-<script>
+  <script>
   function redirect() {
     const token = localStorage.getItem('token');
     const language = localStorage.getItem('language');
@@ -125,6 +128,10 @@
   function scrollToFeatures() {
     document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
   }
+
+
+
+
 
   // Typing effect for tagline
   const typingText = document.getElementById('typing-text');
