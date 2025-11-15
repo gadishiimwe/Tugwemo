@@ -163,16 +163,20 @@
 
       socket.on('existing-participants', (data) => {
         console.log('Existing participants:', data.participants);
-        // Add all existing participants to the video grid and create offers
+        // Add all existing participants to the video grid
+        // Only create offers to participants with lower socket IDs to avoid conflicts
         data.participants.forEach(participant => {
-          addParticipant(participant.socketId, participant.userInfo, true);
+          const shouldCreateOffer = socket.id > participant.socketId;
+          addParticipant(participant.socketId, participant.userInfo, shouldCreateOffer);
         });
       });
 
       socket.on('user-joined', (data) => {
         console.log('User joined:', data);
-        // Add new participant and create offer to them
-        addParticipant(data.socketId, data.userInfo, true);
+        // Add new participant
+        // Only create offer if our socket ID is higher (to avoid duplicate offers)
+        const shouldCreateOffer = socket.id > data.socketId;
+        addParticipant(data.socketId, data.userInfo, shouldCreateOffer);
         updateParticipantCount(data.participants);
       });
 
