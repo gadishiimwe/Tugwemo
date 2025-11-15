@@ -5,37 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - Tugwemo</title>
   <link rel="stylesheet" href="public/style.css" />
+  <script src="./i18n.js"></script>
 </head>
 <body>
   <div class="auth-container">
     <div class="auth-card">
       <div class="auth-header">
         <img src="./public/Tugwemo.png" alt="Tugwemo Logo" class="auth-logo" />
-        <h1 id="login-title">Welcome Back</h1>
-        <p id="login-subtitle">Sign in to your Tugwemo account</p>
+        <h1 id="login-title" data-i18n="auth.welcomeBack">Welcome Back</h1>
+        <p id="login-subtitle" data-i18n="auth.signIn">Sign in to your Tugwemo account</p>
       </div>
 
       <form id="loginForm" class="auth-form">
         <div class="form-group">
-          <label for="email" id="email-label">Email</label>
+          <label for="email" id="email-label" data-i18n="auth.email">Email</label>
           <input type="email" id="email" name="email" required />
         </div>
 
         <div class="form-group">
-          <label for="password" id="password-label">Password</label>
+          <label for="password" id="password-label" data-i18n="auth.password">Password</label>
           <input type="password" id="password" name="password" required />
         </div>
 
-        <button type="submit" class="auth-btn primary" id="signin-btn">
+        <button type="submit" class="auth-btn primary" id="signin-btn" data-i18n="auth.signInBtn">
           Sign In
         </button>
       </form>
 
       <div class="auth-links">
         <p id="signup-link">
-          Don't have an account? <a href="register.html">Sign up</a>
+          <span data-i18n="auth.noAccount">Don't have an account?</span> <a href="register.html" data-i18n="auth.signUp">Sign up</a>
         </p>
-        <p><a href="index.html" id="back-home-link">Back to Home</a></p>
+        <p><a href="index.html" id="back-home-link" data-i18n="nav.backHome">Back to Home</a></p>
       </div>
 
       <div id="message" class="message"></div>
@@ -51,44 +52,8 @@
       ? "http://localhost:8000/api"
       : "https://tugwemo-backend.onrender.com/api";
 
-    // Language translations
-    const translations = {
-      en: {
-        title: "Welcome Back",
-        subtitle: "Sign in to your Tugwemo account",
-        email: "Email",
-        password: "Password",
-        signin: "Sign In",
-        signup: 'Don\'t have an account? <a href="register.html">Sign up</a>',
-        back: "Back to Home",
-        success: "Login successful! Redirecting...",
-        error: "Login failed",
-        network: "Network error. Please try again.",
-      },
-      rw: {
-        title: "Murakaza neza",
-        subtitle: "Injira muri konti yawe ya Tugwemo",
-        email: "Emeyili",
-        password: "Ijambo banga",
-        signin: "Injira",
-        signup: 'Nta konti ufite? <a href="register.html">Iyandikishe</a>',
-        back: "Garuka ku rubuga rw'itangiriro",
-        success: "Winjiye neza! Turakuyobora...",
-        error: "Kwinjira byanze",
-        network: "Ikibazo cya interineti. Ongera ugerageze.",
-      },
-    };
-
+    // Use i18n for translations
     const language = localStorage.getItem("language") || "en";
-    const langData = translations[language];
-
-    document.getElementById("login-title").textContent = langData.title;
-    document.getElementById("login-subtitle").textContent = langData.subtitle;
-    document.getElementById("email-label").textContent = langData.email;
-    document.getElementById("password-label").textContent = langData.password;
-    document.getElementById("signin-btn").textContent = langData.signin;
-    document.getElementById("signup-link").innerHTML = langData.signup;
-    document.getElementById("back-home-link").textContent = langData.back;
 
     loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -108,13 +73,13 @@
         if (response.ok) {
           localStorage.setItem("token", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
-          showMessage(langData.success, "success");
+          showMessage(i18n.get('auth.loginSuccess', 'Login successful! Redirecting...'), "success");
           setTimeout(() => (window.location.href = "/video.html"), 1000);
         } else {
-          showMessage(data.message || langData.error, "error");
+          showMessage(data.message || i18n.get('auth.loginError', 'Login failed'), "error");
         }
       } catch (err) {
-        showMessage(langData.network, "error");
+        showMessage(i18n.get('auth.networkError', 'Network error. Please try again.'), "error");
       }
     });
 
