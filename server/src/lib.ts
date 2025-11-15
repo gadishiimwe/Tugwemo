@@ -1,7 +1,26 @@
 import { v4 as uuidv4 } from 'uuid';
-import { GetTypesResult, room } from './types';
 import User from './models/User';
 import Ad from './models/Ad';
+
+interface room {
+  roomid: string,
+  isAvailable: boolean,
+  p1: {
+    id: string | null,
+    userInfo?: { name: string, age?: number, sex?: string } | null,
+    userId?: string | null,
+  },
+  p2: {
+    id: string | null,
+    userInfo?: { name: string, age?: number, sex?: string } | null,
+    userId?: string | null,
+  }
+}
+
+type GetTypesResult =
+| { type: 'p1', p2id: string | null }
+| { type: 'p2', p1id: string | null }
+| false;
 
 export async function handelStart(roomArr: Array<room>, socket: any, cb: Function, io: any): Promise<void> {
 

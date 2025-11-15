@@ -9,7 +9,7 @@ import path from "path";
 import adminRoutes from "./routes/admin";
 import authRoutes from "./routes/auth";
 import { setupAdminSocket } from "./socket/adminSocket";
-import { handelStart, handelDisconnect } from "./lib";
+import { handelStart, handelDisconnect, getType } from "./lib";
 import Ad from "./models/Ad";
 import User from "./models/User";
 
@@ -90,7 +90,7 @@ app.set("io", io);
 
 // ✅ Socket.io logic
 let online = 0;
-let roomArr: any[] = [];
+let roomArr: Array<any> = [];
 
 // Setup admin socket namespace
 setupAdminSocket(io);
